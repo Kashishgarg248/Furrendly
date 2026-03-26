@@ -18,30 +18,30 @@ export default function Hero() {
 
   const appLink = "https://play.google.com/store/apps/details?id=furrendly"
 
-  // Auto slider
+  // 🔥 Auto slider (3 sec)
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length)
-    }, 4000)
+    }, 3000)
 
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <section className="relative h-[90vh] overflow-hidden flex items-center justify-center">
+    <section className="relative h-[70vh] sm:h-[80vh] md:h-[90vh] overflow-hidden flex items-center justify-center">
 
-      {/* 🔥 Smooth Background Slider */}
+      {/* 🔥 Background Slider */}
       <div className="absolute inset-0">
 
         {images.map((img, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0 }}
-            animate={{ 
+            animate={{
               opacity: i === index ? 1 : 0,
-              scale: i === index ? 1 : 1.05 // subtle zoom effect
+              scale: i === index ? 1 : 1.05
             }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <Image
@@ -49,7 +49,11 @@ export default function Hero() {
               alt="pet"
               fill
               priority={i === 0}
-              className="object-cover"
+              className="
+                object-cover 
+                object-[center_30%] 
+                md:object-center
+              "
             />
           </motion.div>
         ))}
@@ -61,12 +65,12 @@ export default function Hero() {
       {/* 🔥 Content */}
       <div className="relative z-10 text-center px-6 max-w-3xl text-white flex flex-col items-center">
 
-        {/* 🔥 Logo (appears once, stays) */}
+        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1.08 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-2 leading-none"
+          animate={{ opacity: 1, scale: 1.05 }}
+          transition={{ duration: 0.8 }}
+          className="mb-2"
         >
           <Image
             src="/logo-transparent.png"
@@ -74,7 +78,7 @@ export default function Hero() {
             width={0}
             height={0}
             sizes="100vw"
-            className="h-[140px] md:h-[200px] lg:h-[260px] w-auto object-contain brightness-0 invert drop-shadow-2xl"
+            className="h-[110px] sm:h-[140px] md:h-[200px] lg:h-[260px] w-auto object-contain brightness-0 invert drop-shadow-2xl"
             priority
           />
         </motion.div>
@@ -84,7 +88,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-sm md:text-lg mb-5 leading-tight text-white/90"
+          className="text-sm sm:text-base md:text-lg mb-5 text-white/90"
         >
           Find, Care, and Adopt — all in one friendly pet ecosystem.
         </motion.p>
@@ -94,7 +98,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="flex flex-col md:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row gap-4"
         >
           <a
             href={appLink}
