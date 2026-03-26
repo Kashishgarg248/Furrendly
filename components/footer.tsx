@@ -176,49 +176,53 @@ export default function Footer({ setCurrentPage }: FooterProps) {
 
 
           {/* Social Links */}
-          <div className="flex items-center gap-6">
-            <span className="text-gray-400 text-sm uppercase tracking-wide">Follow Us</span>
-            <div className="flex gap-4">
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition text-gray-300 hover:text-white"
-                aria-label="Facebook"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition text-gray-300 hover:text-white"
-                aria-label="Twitter"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition text-gray-300 hover:text-white"
-                aria-label="Instagram"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
-                </svg>
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition text-gray-300 hover:text-white"
-                aria-label="LinkedIn"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
+<div className="flex items-center gap-6">
+  <span className="text-gray-400 text-sm uppercase tracking-wide">Follow Us</span>
+
+  <div className="flex gap-4">
+
+    {/* Instagram */}
+    <a 
+      href="https://www.instagram.com/furrend.ly?igsh=MW84eW45N2JkeWhoZQ%3D%3D" 
+      className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition text-gray-300 hover:text-white"
+      aria-label="Instagram"
+    >
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/>
+        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="none" stroke="currentColor" strokeWidth="2"/>
+        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+      </svg>
+    </a>
+
+    {/* LinkedIn */}
+    <a 
+      href="https://www.linkedin.com/company/furrendly/" 
+      className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition text-gray-300 hover:text-white"
+      aria-label="LinkedIn"
+    >
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+      </svg>
+    </a>
+
+    {/* Discord */}
+    <a 
+  href="#" 
+  className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition text-gray-300 hover:text-white"
+  aria-label="Discord"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="w-5 h-5"
+  >
+    <path d="M20.317 4.369A19.791 19.791 0 0015.885 3c-.191.347-.403.8-.553 1.165a18.27 18.27 0 00-6.664 0c-.15-.365-.362-.818-.553-1.165a19.736 19.736 0 00-4.433 1.369C1.533 7.07.89 9.662 1.08 12.223c1.977 1.463 3.89 2.354 5.776 2.939.465-.63.873-1.294 1.215-1.992-.664-.25-1.296-.555-1.892-.907.158-.117.314-.24.466-.366 3.65 1.67 7.61 1.67 11.222 0 .153.126.308.249.466.366-.596.352-1.228.657-1.892.907.342.698.75 1.362 1.215 1.992 1.886-.585 3.799-1.476 5.776-2.939.239-3.126-.408-5.694-1.68-7.854zM8.02 13.016c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9 2.307-2.04 2.307zm7.96 0c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9 2.307-2.04 2.307z"/>
+  </svg>
+</a>
+
+  </div>
+</div>
         </div>
       </div>
     </footer>

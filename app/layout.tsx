@@ -9,23 +9,12 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Furrendly - Pet Care & Adoption Platform',
   description: 'Find, care, and adopt pets with Furrendly. Your all-in-one platform for pet health records, matching, and community.',
-  generator: 'v0.app',
+  generator: 'Furrendly',
+
+  // ✅ CLEAN FAVICON SETUP
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: "/apple-icon.png",
+    apple: "/apple-icon.png",
   },
 }
 

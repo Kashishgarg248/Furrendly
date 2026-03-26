@@ -11,21 +11,21 @@ export default function Features() {
       icon: "🐶",
       title: 'Find a Match',
       description: 'Smart matching algorithm to find your perfect pet companion',
-      borderColor: 'border-pink-400'
+      color: 'from-pink-400 to-pink-500'
     },
     {
       id: 2,
       icon: "🏡",
       title: 'Re-Home',
       description: 'Safe and secure rehoming services for pets needing new families',
-      borderColor: 'border-orange-400'
+      color: 'from-orange-400 to-orange-500'
     },
     {
       id: 3,
       icon: "🐾",
       title: 'Adoption',
       description: 'Browse adoptable pets and complete adoption process seamlessly',
-      borderColor: 'border-purple-400'
+      color: 'from-purple-400 to-purple-500'
     }
   ]
 
@@ -38,7 +38,7 @@ export default function Features() {
 
   return (
 
-    <section className="py-12 md:py-20 bg-white">
+    <section className="py-16 md:py-24 bg-white">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -47,10 +47,10 @@ export default function Features() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
 
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
             One App, All Solutions
           </h2>
 
@@ -62,22 +62,27 @@ export default function Features() {
         </motion.div>
 
         {/* Features */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-20">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-24">
 
-          {features.map((feature) => (
+          {features.map((feature, index) => (
 
             <motion.div
               key={feature.id}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
-              className={`border-2 ${feature.borderColor} rounded-2xl p-6 bg-white hover:shadow-xl transition`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="relative rounded-2xl p-6 bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
             >
 
-              <div className="text-3xl mb-3">
+              {/* Top gradient bar */}
+              <div className={`absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r ${feature.color}`} />
+
+              <div className="text-4xl mb-4">
                 {feature.icon}
               </div>
 
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
                 {feature.title}
               </h3>
 
@@ -96,17 +101,19 @@ export default function Features() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="rounded-3xl p-8 md:p-12 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100"
+          className="rounded-3xl p-10 md:p-14 
+          bg-gradient-to-br from-green-50 to-emerald-100 
+          border border-green-100 shadow-lg"
         >
 
           {/* Title */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-12">
 
-            <span className="inline-block bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4 shadow">
               Future Services
             </span>
 
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            <h3 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
               More Pet Services Coming Soon
             </h3>
 
@@ -127,8 +134,12 @@ export default function Features() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.08 }}
-                className="flex items-center gap-3 bg-white px-6 py-4 rounded-full shadow-sm border hover:shadow-md transition"
+                whileHover={{ y: -6, scale: 1.07 }}
+                className="flex items-center gap-3 
+                bg-white/80 backdrop-blur-md 
+                px-6 py-4 rounded-full 
+                border border-white/50 
+                shadow-sm hover:shadow-md transition cursor-pointer"
               >
 
                 <span className="text-2xl">
@@ -139,7 +150,7 @@ export default function Features() {
                   {service.label}
                 </span>
 
-                <span className="text-xs text-green-600 font-medium">
+                <span className="text-xs text-green-600 font-semibold">
                   Coming Soon
                 </span>
 
@@ -150,9 +161,13 @@ export default function Features() {
           </div>
 
           {/* Footer note */}
-          <p className="text-center text-sm text-gray-600 mt-10">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-center text-sm text-gray-600 mt-10"
+          >
             💡 Turn on notifications — Be the first to know when these launch.
-          </p>
+          </motion.p>
 
         </motion.div>
 

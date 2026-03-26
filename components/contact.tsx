@@ -120,39 +120,41 @@ export default function Contact({ setCurrentPage }: ContactProps) {
 
                 <div className="flex gap-4">
 
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-blue-50 hover:scale-110 transition"
-                  >
-                    <Facebook className="w-5 h-5 text-gray-700 hover:text-blue-600" />
-                  </a>
+  {/* Instagram */}
+  <a
+    href="https://www.instagram.com/furrend.ly?igsh=MW84eW45N2JkeWhoZQ%3D%3D"
+    target="_blank"
+    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-pink-50 hover:scale-110 transition"
+  >
+    <Instagram className="w-5 h-5 text-gray-700 hover:text-pink-500" />
+  </a>
 
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-sky-50 hover:scale-110 transition"
-                  >
-                    <Twitter className="w-5 h-5 text-gray-700 hover:text-sky-500" />
-                  </a>
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com/company/furrendly/"
+    target="_blank"
+    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-blue-50 hover:scale-110 transition"
+  >
+    <Linkedin className="w-5 h-5 text-gray-700 hover:text-blue-700" />
+  </a>
 
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-pink-50 hover:scale-110 transition"
-                  >
-                    <Instagram className="w-5 h-5 text-gray-700 hover:text-pink-500" />
-                  </a>
+  {/* Discord */}
+  <a
+    href="#"
+    target="_blank"
+    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-indigo-50 hover:scale-110 transition"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="w-5 h-5 text-gray-700 hover:text-indigo-600"
+    >
+      <path d="M20.317 4.369A19.791 19.791 0 0015.885 3c-.191.347-.403.8-.553 1.165a18.27 18.27 0 00-6.664 0c-.15-.365-.362-.818-.553-1.165a19.736 19.736 0 00-4.433 1.369C1.533 7.07.89 9.662 1.08 12.223c1.977 1.463 3.89 2.354 5.776 2.939.465-.63.873-1.294 1.215-1.992-.664-.25-1.296-.555-1.892-.907.158-.117.314-.24.466-.366 3.65 1.67 7.61 1.67 11.222 0 .153.126.308.249.466.366-.596.352-1.228.657-1.892.907.342.698.75 1.362 1.215 1.992 1.886-.585 3.799-1.476 5.776-2.939.239-3.126-.408-5.694-1.68-7.854zM8.02 13.016c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9 2.307-2.04 2.307zm7.96 0c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9 2.307-2.04 2.307z"/>
+    </svg>
+  </a>
 
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-blue-50 hover:scale-110 transition"
-                  >
-                    <Linkedin className="w-5 h-5 text-gray-700 hover:text-blue-700" />
-                  </a>
-
-                </div>
+</div>
 
               </div>
 

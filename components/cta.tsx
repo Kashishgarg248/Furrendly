@@ -55,21 +55,27 @@ export default function CTA({ setCurrentPage }: CTAProps) {
 
             <div>
               <div className="text-3xl font-bold text-gray-900">
-                {isInView && <CountUp end={50} duration={2} />}K+
+                {isInView && <CountUp end={5} duration={5} />}K+
               </div>
               <p className="text-sm text-gray-600">Happy Families</p>
             </div>
 
-            <div>
+            {/* <div>
               <div className="text-3xl font-bold text-gray-900">
                 {isInView && <CountUp end={500} duration={2} />}+
               </div>
               <p className="text-sm text-gray-600">Partner Vets</p>
+            </div> */}
+            <div>
+              <div className="text-3xl font-bold text-gray-900">
+                {isInView && <CountUp end={5} duration={5} />}K+
+              </div>
+              <p className="text-sm text-gray-600">Adoptions</p>
             </div>
 
             <div>
               <div className="text-3xl font-bold text-gray-900">
-                {isInView && <CountUp end={100} duration={2} />}K+
+                {isInView && <CountUp end={10} duration={5} />}K+
               </div>
               <p className="text-sm text-gray-600">Pets Matched</p>
             </div>

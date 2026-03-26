@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -20,7 +21,6 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
   ]
 
   return (
-
     <header className="w-full bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
 
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
@@ -28,16 +28,23 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
         {/* Logo */}
         <button
           onClick={() => setCurrentPage('home')}
-          className="text-xl font-bold tracking-tight"
+          className="flex items-center"
         >
-          Furrendly
+          <Image
+  src="/logo-transparent.png"
+  alt="Furrendly Logo"
+  width={0}
+  height={0}
+  sizes="100vw"
+  className="h-30 w-auto object-contain"
+  priority
+/>
         </button>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8 font-medium">
 
           {navItems.map((item) => (
-
             <button
               key={item.page}
               onClick={() => setCurrentPage(item.page as any)}
@@ -49,12 +56,11 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
             >
               {item.name}
             </button>
-
           ))}
 
         </nav>
 
-        {/* Hamburger Button */}
+        {/* Hamburger */}
         <button
           className="md:hidden text-gray-800"
           onClick={() => setOpen(!open)}
@@ -66,9 +72,7 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
 
       {/* Mobile Menu */}
       <AnimatePresence>
-
         {open && (
-
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,9 +80,7 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
             transition={{ duration: 0.25 }}
             className="md:hidden bg-white border-t px-6 py-6 flex flex-col gap-6 text-gray-700 font-medium"
           >
-
             {navItems.map((item) => (
-
               <button
                 key={item.page}
                 onClick={() => {
@@ -93,13 +95,9 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
               >
                 {item.name}
               </button>
-
             ))}
-
           </motion.div>
-
         )}
-
       </AnimatePresence>
 
     </header>
