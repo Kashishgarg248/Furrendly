@@ -136,10 +136,24 @@ export default function Footer({ setCurrentPage }: FooterProps) {
                 </li>
 
                 <li>
-                  <a className="text-gray-400 hover:text-white transition">
-                    Terms of Service
-                  </a>
-                </li>
+  <a
+    href="/docs/terms.pdf"
+    target="_blank"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Terms of Service
+  </a>
+</li>
+
+<li>
+  <a
+    href="/docs/safety.pdf"
+    target="_blank"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Safety Guidelines
+  </a>
+</li>
 
                 <li>
                   <button
@@ -150,11 +164,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
                   </button>
                 </li>
 
-                <li>
-                  <a className="text-gray-400 hover:text-white transition">
-                    Help Center
-                  </a>
-                </li>
+                
 
               </ul>
 

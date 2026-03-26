@@ -27,18 +27,21 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
 
         {/* Logo */}
         <button
-          onClick={() => setCurrentPage('home')}
+          onClick={() => {
+            setCurrentPage('home')
+            setOpen(false) // 🔥 ensures mobile menu closes
+          }}
           className="flex items-center"
         >
           <Image
-  src="/logo-transparent.png"
-  alt="Furrendly Logo"
-  width={0}
-  height={0}
-  sizes="100vw"
-  className="h-30 w-auto object-contain"
-  priority
-/>
+            src="/logo-transparent.png"
+            alt="Furrendly Logo"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="h-30 w-auto object-contain"
+            priority
+          />
         </button>
 
         {/* Desktop Menu */}
