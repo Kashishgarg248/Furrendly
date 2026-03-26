@@ -30,26 +30,29 @@ export default function Hero() {
   return (
     <section className="relative h-[90vh] overflow-hidden flex items-center justify-center">
 
-      {/* 🔥 Background Slider */}
+      {/* 🔥 Smooth Background Slider */}
       <div className="absolute inset-0">
-        <AnimatePresence mode="wait">
+
+        {images.map((img, i) => (
           <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: i === index ? 1 : 0,
+              scale: i === index ? 1 : 1.05 // subtle zoom effect
+            }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <Image
-              src={images[index]}
+              src={img}
               alt="pet"
               fill
-              priority
+              priority={i === 0}
               className="object-cover"
             />
           </motion.div>
-        </AnimatePresence>
+        ))}
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50" />
@@ -58,7 +61,7 @@ export default function Hero() {
       {/* 🔥 Content */}
       <div className="relative z-10 text-center px-6 max-w-3xl text-white flex flex-col items-center">
 
-        {/* 🔥 Logo (animate once, then stay) */}
+        {/* 🔥 Logo (appears once, stays) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1.08 }}
