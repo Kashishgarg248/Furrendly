@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion"
 import { Button } from '@/components/ui/button'
-import { Mail, Phone, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { Mail, Phone, Instagram, Linkedin } from "lucide-react"
 
 interface ContactProps {
   setCurrentPage: (page: 'home' | 'contact' | 'faq') => void
@@ -19,24 +19,42 @@ export default function Contact({ setCurrentPage }: ContactProps) {
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // ✅ FINAL HANDLE SUBMIT
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
 
-    console.log("Form submitted:", formData)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
 
-    setSubmitted(true)
+      const data = await res.json()
 
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    })
+      if (data.success) {
+        setSubmitted(true)
 
-    setTimeout(() => {
-      setSubmitted(false)
-    }, 4000)
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        })
+
+        setTimeout(() => setSubmitted(false), 4000)
+      } else {
+        alert("Something went wrong")
+      }
+
+    } catch (err) {
+      alert("Error sending message")
+    }
+
+    setLoading(false)
   }
 
   return (
@@ -51,7 +69,6 @@ export default function Contact({ setCurrentPage }: ContactProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
             Contact Us
           </h1>
@@ -59,7 +76,6 @@ export default function Contact({ setCurrentPage }: ContactProps) {
           <p className="text-gray-600 md:text-lg">
             Get in touch with us — we'd love to hear from you
           </p>
-
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-16">
@@ -79,87 +95,64 @@ export default function Contact({ setCurrentPage }: ContactProps) {
 
               {/* Email */}
               <div className="flex items-center gap-4 p-4 border rounded-xl hover:shadow-md transition">
-
                 <Mail className="w-6 h-6 text-gray-700" />
-
                 <div>
-                  <p className="font-semibold text-gray-900">
-                    Email
-                  </p>
-
-                  <p className="text-gray-600">
-                    team@furrendly.com
-                  </p>
+                  <p className="font-semibold text-gray-900">Email</p>
+                  <p className="text-gray-600">team@furrendly.com</p>
                 </div>
-
               </div>
 
               {/* Phone */}
               <div className="flex items-center gap-4 p-4 border rounded-xl hover:shadow-md transition">
-
                 <Phone className="w-6 h-6 text-gray-700" />
-
                 <div>
-                  <p className="font-semibold text-gray-900">
-                    Phone
-                  </p>
-
-                  <p className="text-gray-600">
-                    +91 8448119295
-                  </p>
+                  <p className="font-semibold text-gray-900">Phone</p>
+                  <p className="text-gray-600">+91 8448119295</p>
                 </div>
-
               </div>
 
-              {/* Social Media */}
+              {/* Social */}
               <div className="pt-4">
-
                 <p className="font-semibold text-gray-900 mb-3">
                   Follow Us
                 </p>
 
                 <div className="flex gap-4">
 
-  {/* Instagram */}
-  <a
-    href="https://www.instagram.com/furrend.ly?igsh=MW84eW45N2JkeWhoZQ%3D%3D"
-    target="_blank"
-    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-pink-50 hover:scale-110 transition"
+                  <a
+                    href="https://www.instagram.com/furrend.ly"
+                    target="_blank"
+                    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-pink-50 hover:scale-110 transition"
+                  >
+                    <Instagram className="w-5 h-5 text-gray-700 hover:text-pink-500" />
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/company/furrendly/"
+                    target="_blank"
+                    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-blue-50 hover:scale-110 transition"
+                  >
+                    <Linkedin className="w-5 h-5 text-gray-700 hover:text-blue-700" />
+                  </a>
+                   {/* Discord */}
+   <a 
+  href="#" 
+  className="w-10 h-10 rounded-full bg-white border flex items-center justify-center transition hover:bg-indigo-50 hover:scale-110"
+  aria-label="Discord"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="w-5 h-5 text-gray-700 transition hover:text-indigo-600"
   >
-    <Instagram className="w-5 h-5 text-gray-700 hover:text-pink-500" />
-  </a>
-
-  {/* LinkedIn */}
-  <a
-    href="https://www.linkedin.com/company/furrendly/"
-    target="_blank"
-    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-blue-50 hover:scale-110 transition"
-  >
-    <Linkedin className="w-5 h-5 text-gray-700 hover:text-blue-700" />
-  </a>
-
-  {/* Discord */}
-  <a
-    href="#"
-    target="_blank"
-    className="w-10 h-10 flex items-center justify-center rounded-full border hover:bg-indigo-50 hover:scale-110 transition"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="w-5 h-5 text-gray-700 hover:text-indigo-600"
-    >
-      <path d="M20.317 4.369A19.791 19.791 0 0015.885 3c-.191.347-.403.8-.553 1.165a18.27 18.27 0 00-6.664 0c-.15-.365-.362-.818-.553-1.165a19.736 19.736 0 00-4.433 1.369C1.533 7.07.89 9.662 1.08 12.223c1.977 1.463 3.89 2.354 5.776 2.939.465-.63.873-1.294 1.215-1.992-.664-.25-1.296-.555-1.892-.907.158-.117.314-.24.466-.366 3.65 1.67 7.61 1.67 11.222 0 .153.126.308.249.466.366-.596.352-1.228.657-1.892.907.342.698.75 1.362 1.215 1.992 1.886-.585 3.799-1.476 5.776-2.939.239-3.126-.408-5.694-1.68-7.854zM8.02 13.016c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9 2.307-2.04 2.307zm7.96 0c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9 2.307-2.04 2.307z"/>
-    </svg>
-  </a>
-
-</div>
-
+    <path d="M20.317 4.369A19.791 19.791 0 0015.885 3c-.191.347-.403.8-.553 1.165a18.27 18.27 0 00-6.664 0c-.15-.365-.362-.818-.553-1.165a19.736 19.736 0 00-4.433 1.369C1.533 7.07.89 9.662 1.08 12.223c1.977 1.463 3.89 2.354 5.776 2.939.465-.63.873-1.294 1.215-1.992-.664-.25-1.296-.555-1.892-.907.158-.117.314-.24.466-.366 3.65 1.67 7.61 1.67 11.222 0 .153.126.308.249.466.366-.596.352-1.228.657-1.892.907.342.698.75 1.362 1.215 1.992 1.886-.585 3.799-1.476 5.776-2.939.239-3.126-.408-5.694-1.68-7.854zM8.02 13.016c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9 2.307-2.04 2.307zm7.96 0c-1.12 0-2.04-1.034-2.04-2.307 0-1.273.9-2.307 2.04-2.307 1.14 0 2.06 1.034 2.04 2.307 0 1.273-.9-2.307-2.04 2.307z"/>
+  </svg>
+</a>
+                </div>
               </div>
 
             </div>
-
           </motion.div>
 
           {/* Contact Form */}
@@ -181,91 +174,56 @@ export default function Contact({ setCurrentPage }: ContactProps) {
 
             <form onSubmit={handleSubmit} className="space-y-6">
 
-              {/* Name */}
-              <div>
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className="w-full px-4 py-3 border rounded-lg"
+                required
+              />
 
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Your Name
-                </label>
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className="w-full px-4 py-3 border rounded-lg"
+                required
+              />
 
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  placeholder="John Doe"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-                  required
-                />
+              <input
+                type="text"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={(e) =>
+                  setFormData({ ...formData, subject: e.target.value })
+                }
+                className="w-full px-4 py-3 border rounded-lg"
+                required
+              />
 
-              </div>
-
-              {/* Email */}
-              <div>
-
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Your Email
-                </label>
-
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  placeholder="john@example.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-                  required
-                />
-
-              </div>
-
-              {/* Subject */}
-              <div>
-
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Subject
-                </label>
-
-                <input
-                  type="text"
-                  value={formData.subject}
-                  onChange={(e) =>
-                    setFormData({ ...formData, subject: e.target.value })
-                  }
-                  placeholder="How can we help?"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-                  required
-                />
-
-              </div>
-
-              {/* Message */}
-              <div>
-
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Your Message
-                </label>
-
-                <textarea
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  placeholder="Tell us more..."
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 resize-none transition"
-                  required
-                />
-
-              </div>
+              <textarea
+                placeholder="Your Message"
+                rows={5}
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
+                className="w-full px-4 py-3 border rounded-lg resize-none"
+                required
+              />
 
               <Button
                 type="submit"
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-lg transition"
+                disabled={loading}
+                className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg"
               >
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
               </Button>
 
             </form>

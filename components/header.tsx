@@ -21,7 +21,7 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
   ]
 
   return (
-    <header className="w-full bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
+    <header className="w-full bg-white border-b shadow-sm sticky top-0 z-50">
 
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
 
@@ -29,7 +29,7 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
         <button
           onClick={() => {
             setCurrentPage('home')
-            setOpen(false) // 🔥 ensures mobile menu closes
+            setOpen(false)
           }}
           className="flex items-center"
         >
@@ -39,7 +39,7 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
             width={0}
             height={0}
             sizes="100vw"
-            className="h-30 w-auto object-contain"
+            className="h-30 md:h-30 w-auto object-contain"
             priority
           />
         </button>
@@ -51,13 +51,21 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
             <button
               key={item.page}
               onClick={() => setCurrentPage(item.page as any)}
-              className={`transition ${
+              className={`relative transition ${
                 currentPage === item.page
                   ? "text-black font-semibold"
                   : "text-gray-600 hover:text-black"
               }`}
             >
               {item.name}
+
+              {/* 🔥 Active underline animation */}
+              {currentPage === item.page && (
+                <motion.div
+                  layoutId="underline"
+                  className="absolute left-0 -bottom-1 h-[2px] w-full bg-black rounded"
+                />
+              )}
             </button>
           ))}
 
@@ -77,9 +85,9 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
             className="md:hidden bg-white border-t px-6 py-6 flex flex-col gap-6 text-gray-700 font-medium"
           >
