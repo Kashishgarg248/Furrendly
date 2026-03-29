@@ -5,11 +5,31 @@ import { motion, AnimatePresence } from "framer-motion"
 import QRCode from "react-qr-code"
 import { useState, useEffect } from "react"
 
-const images = [
-  "/pets/img1.jpeg",
-  "/pets/img2.jpeg",
-  "/pets/img3.jpeg",
-  "/pets/img4.jpeg"
+const slides = [
+  {
+    img: "/pets/img1.jpeg",
+    mobileImg: "/pets/pet1.PNG",
+    title: "Find Your Fur-ever Friend",
+    desc: "Discover pets waiting to fill your life with unconditional love."
+  },
+  {
+    img: "/pets/img2.jpeg",
+    mobileImg: "/pets/pet2.PNG",
+    title: "Adopt, Don’t Shop",
+    desc: "Give a loving home to pets who need you the most."
+  },
+  {
+    img: "/pets/img3.jpeg",
+    mobileImg: "/pets/pet3.PNG",
+    title: "Care Made Easy",
+    desc: "Track health, food, and activities easily."
+  },
+  {
+    img: "/pets/img4.jpeg",
+    mobileImg: "/pets/pet4.PNG",
+    title: "Join the Community",
+    desc: "Connect with pet lovers around you."
+  }
 ]
 
 export default function Hero() {
@@ -18,107 +38,173 @@ export default function Hero() {
 
   const appLink = "https://play.google.com/store/apps/details?id=furrendly"
 
-  // 🔥 Auto slider (3 sec)
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-
+      setIndex((prev) => (prev + 1) % slides.length)
+    }, 7000)
     return () => clearInterval(interval)
   }, [])
 
+  const slide = slides[index]
+
   return (
-    <section className="relative h-[70vh] sm:h-[80vh] md:h-[90vh] overflow-hidden flex items-center justify-center">
+    <section className="relative overflow-hidden">
 
-      {/* 🔥 Background Slider */}
-      <div className="absolute inset-0">
+      {/* ================== 💻 DESKTOP ================== */}
+      <div className="hidden md:block h-[90vh] w-full relative">
 
-        {images.map((img, i) => (
+        {/* MAIN IMAGE */}
+        <AnimatePresence mode="wait">
           <motion.div
-            key={i}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: i === index ? 1 : 0,
-              scale: i === index ? 1 : 1.05
-            }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            key={slide.img}
             className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
           >
             <Image
-              src={img}
+              src={slide.img}
               alt="pet"
               fill
-              priority={i === 0}
-              className="
-                object-cover 
-                object-[center_30%] 
-                md:object-center
-              "
+              priority
+              sizes="100vw"
+              className="object-cover"
             />
           </motion.div>
-        ))}
+        </AnimatePresence>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+        {/* BLUR LAYER (dynamic side) */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slide.img + "-blur"}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          >
+            <Image
+              src={slide.img}
+              alt="pet"
+              fill
+              sizes="100vw"
+              className="object-cover blur-3xl scale-110 brightness-75"
+              style={{
+                maskImage:
+                  index < 2
+                    ? "linear-gradient(to right, black 0%, black 30%, transparent 70%)"
+                    : "linear-gradient(to left, black 0%, black 30%, transparent 70%)",
+                WebkitMaskImage:
+                  index < 2
+                    ? "linear-gradient(to right, black 0%, black 30%, transparent 70%)"
+                    : "linear-gradient(to left, black 0%, black 30%, transparent 70%)"
+              }}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* CONTENT (dynamic position) */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            className={`absolute top-0 h-full w-1/2 flex items-center px-12 z-10 ${
+              index < 2
+                ? "left-0 justify-start text-left"
+                : "right-0 justify-end text-right"
+            }`}
+            initial={{ opacity: 0, x: index < 2 ? -60 : 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: index < 2 ? -60 : 60 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="max-w-lg text-white">
+              <h1 className="text-5xl font-bold mb-4">
+                {slide.title}
+              </h1>
+
+              <p className="text-lg text-white/80 mb-6">
+                {slide.desc}
+              </p>
+
+              <div
+                className={`flex gap-4 ${
+                  index < 2 ? "justify-start" : "justify-end"
+                }`}
+              >
+                <a
+                  href={appLink}
+                  target="_blank"
+                  className="bg-black text-white px-6 py-3 rounded-xl font-semibold"
+                >
+                  Download App
+                </a>
+
+                <button
+                  onClick={() => setShowQR(true)}
+                  className="bg-white text-black px-6 py-3 rounded-xl font-semibold"
+                >
+                  Scan QR
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* 🔥 Content */}
-      <div className="relative z-10 text-center px-6 max-w-3xl text-white flex flex-col items-center">
+      {/* ================== 📱 MOBILE ================== */}
+      <div className="md:hidden relative h-[80vh] flex items-center justify-center text-center">
 
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1.05 }}
-          transition={{ duration: 0.8 }}
-          className="mb-2"
-        >
-          <Image
-            src="/logo-transparent.png"
-            alt="Furrendly Logo"
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="h-[110px] sm:h-[140px] md:h-[200px] lg:h-[260px] w-auto object-contain brightness-0 invert drop-shadow-2xl"
-            priority
-          />
-        </motion.div>
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-sm sm:text-base md:text-lg mb-5 text-white/90"
-        >
-          Find, Care, and Adopt — all in one friendly pet ecosystem.
-        </motion.p>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4"
-        >
-          <a
-            href={appLink}
-            target="_blank"
-            className="bg-white text-black px-7 py-3 rounded-xl font-semibold hover:bg-gray-200 transition shadow-lg"
+        <AnimatePresence>
+          <motion.div
+            key={slide.mobileImg}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.03 }}
+animate={{ opacity: 1, scale: 1 }}
+exit={{ opacity: 0 }}
+transition={{ duration: 1, ease: "easeInOut" }}
           >
-            Download App
-          </a>
+            <Image
+              src={slide.mobileImg || slide.img}
+              alt="pet"
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </motion.div>
+        </AnimatePresence>
 
-          <button
-            onClick={() => setShowQR(true)}
-            className="bg-white/90 text-black px-6 py-3 rounded-xl shadow-md font-semibold hover:bg-white transition"
-          >
-            Scan QR
-          </button>
-        </motion.div>
+        <div className="absolute inset-0 z-0" />
 
+        <div className="relative z-10 px-6 text-white max-w-md">
+          <h1 className="text-3xl font-bold mb-4">
+            {slide.title}
+          </h1>
+
+          <p className="text-sm mb-6">
+            {slide.desc}
+          </p>
+
+          <div className="flex flex-col gap-3">
+            <a
+              href={appLink}
+              target="_blank"
+              className="bg-white text-black px-6 py-3 rounded-xl font-semibold"
+            >
+              Download App
+            </a>
+
+            <button
+              onClick={() => setShowQR(true)}
+              className="bg-white/90 text-black px-6 py-3 rounded-xl"
+            >
+              Scan QR
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* 🔥 QR Modal */}
+      {/* QR MODAL */}
       <AnimatePresence>
         {showQR && (
           <motion.div
@@ -127,18 +213,15 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Background */}
             <div
               className="absolute inset-0 bg-black/50 backdrop-blur-sm"
               onClick={() => setShowQR(false)}
             />
 
-            {/* Modal */}
             <motion.div
-              initial={{ scale: 0.85, opacity: 0, y: 40 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: 40 }}
-              transition={{ duration: 0.3 }}
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
               className="relative bg-white p-6 rounded-2xl shadow-2xl flex flex-col items-center gap-4 z-10"
             >
               <p className="font-semibold text-gray-800">
@@ -154,7 +237,6 @@ export default function Hero() {
                 Close
               </button>
             </motion.div>
-
           </motion.div>
         )}
       </AnimatePresence>

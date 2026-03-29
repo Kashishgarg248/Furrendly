@@ -25,7 +25,7 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
 
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
 
-        {/* Logo */}
+        {/* 🔥 LOGO FIXED */}
         <button
           onClick={() => {
             setCurrentPage('home')
@@ -36,10 +36,9 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
           <Image
             src="/logo-transparent.png"
             alt="Furrendly Logo"
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="h-30 md:h-30 w-auto object-contain"
+            width={200}
+            height={120}
+            className="object-contain"
             priority
           />
         </button>
@@ -59,7 +58,7 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
             >
               {item.name}
 
-              {/* 🔥 Active underline animation */}
+              {/* Active underline */}
               {currentPage === item.page && (
                 <motion.div
                   layoutId="underline"
