@@ -31,9 +31,9 @@ export default function Features() {
 
   const futureServices = [
     { icon: '🏥', label: 'Vet' },
-    { icon: '✂️', label: 'Grooming' },
-    { icon: '🏪', label: 'Pet Store' },
-    { icon: '🎓', label: 'Training' }
+    { icon: '✂️', label: 'Spa & Styling' },
+    { icon: '🏪', label: 'Curated Essentials' },
+    { icon: '🎓', label: 'Expert Coaching' }
   ]
 
   return (
@@ -51,12 +51,12 @@ export default function Features() {
         >
 
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-            One App, All Solutions
+            The Complete Pet Ecosystem
           </h2>
 
           <p className="text-gray-600 md:text-lg max-w-2xl mx-auto">
-            Furrendly is the place where all your pet-related needs are handled
-            with care. We love your family friends 🐾
+            From finding your new best friend to lifelong care, everything your pet needs is
+            right here.
           </p>
 
         </motion.div>
@@ -75,7 +75,6 @@ export default function Features() {
               className="relative rounded-2xl p-6 bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
             >
 
-              {/* Top gradient bar */}
               <div className={`absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r ${feature.color}`} />
 
               <div className="text-4xl mb-4">
@@ -102,30 +101,31 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="rounded-3xl p-10 md:p-14 
-          bg-gradient-to-br from-green-50 to-emerald-100 
-          border border-green-100 shadow-lg"
+bg-gradient-to-br from-green-50/80 to-emerald-100/80 
+border border-white/40 
+shadow-xl backdrop-blur-md"
         >
 
           {/* Title */}
           <div className="text-center mb-12">
 
-            <span className="inline-block bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4 shadow">
+            <span className="inline-block bg-green-600/90 backdrop-blur-sm text-white px-4 py-1 rounded-full text-sm font-medium mb-4 shadow-md">
               Future Services
             </span>
 
-            <h3 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
-              More Pet Services Coming Soon
+            <h3 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-3">
+              Paws and progress
             </h3>
 
             <p className="text-gray-600 max-w-xl mx-auto">
-              Furrendly is expanding into a complete pet ecosystem with
-              healthcare, grooming, training and shopping.
+              We are expanding our platform to bring healthcare, grooming, training, and
+              premium essentials directly to your fingertips.
             </p>
 
           </div>
 
           {/* Services */}
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
 
             {futureServices.map((service, index) => (
 
@@ -134,15 +134,18 @@ export default function Features() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -6, scale: 1.07 }}
+                whileHover={{ y: -4, scale: 1.03 }}
                 className="flex items-center gap-3 
-                bg-white/80 backdrop-blur-md 
-                px-6 py-4 rounded-full 
-                border border-white/50 
-                shadow-sm hover:shadow-md transition cursor-pointer"
+bg-white/90 
+px-5 py-3 rounded-full 
+border border-gray-200 
+shadow-md hover:shadow-lg 
+transition-all duration-300 
+cursor-pointer
+whitespace-nowrap flex-shrink-0"
               >
 
-                <span className="text-2xl">
+                <span className="text-xl md:text-2xl">
                   {service.icon}
                 </span>
 
@@ -150,7 +153,8 @@ export default function Features() {
                   {service.label}
                 </span>
 
-                <span className="text-xs text-green-600 font-semibold">
+                {/* FIXED: always single line */}
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full whitespace-nowrap">
                   Coming Soon
                 </span>
 
@@ -166,7 +170,7 @@ export default function Features() {
             whileInView={{ opacity: 1 }}
             className="text-center text-sm text-gray-600 mt-10"
           >
-            💡 Turn on notifications — Be the first to know when these launch.
+            💡 Notify Me on Launch
           </motion.p>
 
         </motion.div>

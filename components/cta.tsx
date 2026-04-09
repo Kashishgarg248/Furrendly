@@ -29,12 +29,12 @@ export default function CTA({ setCurrentPage }: CTAProps) {
 
           {/* Heading */}
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
-            Ready to Find Your Perfect Pet Match?
+            Ready to Grow Your Family? 
           </h2>
 
           <p className="text-sm md:text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Join our community and discover the joy of pet adoption.
-            Smart matching, secure adoption, and lifetime support.
+            Join thousands of pet lovers. Experience intelligent matching, secure transitions, 
+and a community that supports you at every step. 
           </p>
 
           {/* Buttons */}
@@ -57,7 +57,7 @@ export default function CTA({ setCurrentPage }: CTAProps) {
               <div className="text-3xl font-bold text-gray-900">
                 {isInView && <CountUp end={5} duration={5} />}K+
               </div>
-              <p className="text-sm text-gray-600">Happy Families</p>
+              <p className="text-sm text-gray-600">Families Grown</p>
             </div>
 
             {/* <div>
@@ -70,14 +70,14 @@ export default function CTA({ setCurrentPage }: CTAProps) {
               <div className="text-3xl font-bold text-gray-900">
                 {isInView && <CountUp end={5} duration={5} />}K+
               </div>
-              <p className="text-sm text-gray-600">Adoptions</p>
+              <p className="text-sm text-gray-600">Successful Adoptions</p>
             </div>
 
             <div>
               <div className="text-3xl font-bold text-gray-900">
                 {isInView && <CountUp end={10} duration={5} />}K+
               </div>
-              <p className="text-sm text-gray-600">Pets Matched</p>
+              <p className="text-sm text-gray-600">Perfect Matches</p>
             </div>
 
           </div>

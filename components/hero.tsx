@@ -9,14 +9,14 @@ const slides = [
   {
     img: "/pets/img1.jpeg",
     mobileImg: "/pets/pet1.PNG",
-    title: "Find Your Fur-ever Friend",
-    desc: "Discover pets waiting to fill your life with unconditional love."
+    title: " Playdates for Them. Connections for You. ",
+    desc: "Find the perfect playmate for your pet based on energy, size, and breed—and meet local pet parents who share your vibe. "
   },
   {
     img: "/pets/img2.jpeg",
     mobileImg: "/pets/pet2.PNG",
-    title: "Adopt, Don’t Shop",
-    desc: "Give a loving home to pets who need you the most."
+    title: " Find Your Furr-ever Friend",
+    desc: "Match with rescue pets and local shelters to find the missing piece of your family. "
   },
   {
     img: "/pets/img3.jpeg",
@@ -27,8 +27,8 @@ const slides = [
   {
     img: "/pets/img4.jpeg",
     mobileImg: "/pets/pet4.PNG",
-    title: "Join the Community",
-    desc: "Connect with pet lovers around you."
+    title: "Find Your Pack ",
+    desc: "Swap stories, organize playdates, and connect with a vibrant network of local pet parents."
   }
 ]
 

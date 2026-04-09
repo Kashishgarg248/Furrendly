@@ -34,8 +34,8 @@ export default function Footer({ setCurrentPage }: FooterProps) {
               </h2>
 
               <p className="text-gray-400 text-sm leading-relaxed">
-                Your all-in-one platform for pet adoption, care and community.
-                Find, care and adopt with confidence 🐾
+                The premier platform for adoption, care, and community. Nurturing bonds that 
+last a lifetime.
               </p>
 
             </div>
