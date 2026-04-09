@@ -21,14 +21,14 @@ const slides = [
   {
     img: "/pets/img3.jpeg",
     mobileImg: "/pets/pet3.PNG",
-    title: "Care Made Easy",
-    desc: "Track health, food, and activities easily."
+    title: "Everything Under One Paw",
+    desc: "Get ready for the ultimate pet ecosystem. Expert vet care, professional grooming, and premium essentials are coming soon!"
   },
   {
     img: "/pets/img4.jpeg",
     mobileImg: "/pets/pet4.PNG",
-    title: "Find Your Pack ",
-    desc: "Swap stories, organize playdates, and connect with a vibrant network of local pet parents."
+    title: "Help Them Find Home ",
+    desc: "Found a stray or need to rehome a pet? Create a listing and act as the bridge to connect an animal in need with a loving family."
   }
 ]
 
