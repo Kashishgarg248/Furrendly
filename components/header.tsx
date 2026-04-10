@@ -2,82 +2,67 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-interface HeaderProps {
-  setCurrentPage: (page: 'home' | 'contact' | 'faq') => void
-  currentPage: 'home' | 'contact' | 'faq'
-}
-
-export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
-
+export default function Header() {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
   const navItems = [
-    { name: "Home", page: "home" },
-    { name: "Contact", page: "contact" },
-    { name: "FAQ", page: "faq" }
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+    { name: "FAQ", path: "/faq" }
   ]
 
   return (
     <header className="w-full bg-white border-b shadow-sm sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
 
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-
-        {/* 🔥 LOGO FIXED */}
-        <button
-          onClick={() => {
-            setCurrentPage('home')
-            setOpen(false)
-          }}
-          className="flex items-center"
-        >
+        {/* Logo */}
+        <Link href="/" onClick={() => setOpen(false)}>
           <Image
             src="/logo-transparent.png"
             alt="Furrendly Logo"
-            width={200}
-            height={120}
-            className="object-contain"
-            priority
+            width={180}
+            height={100}
           />
-        </button>
+        </Link>
 
-        {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-8 font-medium">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex gap-8 font-medium">
+          {navItems.map((item) => {
+            const isActive = pathname === item.path
 
-          {navItems.map((item) => (
-            <button
-              key={item.page}
-              onClick={() => setCurrentPage(item.page as any)}
-              className={`relative transition ${
-                currentPage === item.page
-                  ? "text-black font-semibold"
-                  : "text-gray-600 hover:text-black"
-              }`}
-            >
-              {item.name}
+            return (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`relative transition ${
+                  isActive
+                    ? "text-black font-semibold"
+                    : "text-gray-600 hover:text-black"
+                }`}
+              >
+                {item.name}
 
-              {/* Active underline */}
-              {currentPage === item.page && (
-                <motion.div
-                  layoutId="underline"
-                  className="absolute left-0 -bottom-1 h-[2px] w-full bg-black rounded"
-                />
-              )}
-            </button>
-          ))}
-
+                {isActive && (
+                  <motion.div
+                    layoutId="underline"
+                    className="absolute left-0 -bottom-1 h-[2px] w-full bg-black rounded"
+                  />
+                )}
+              </Link>
+            )
+          })}
         </nav>
 
-        {/* Hamburger */}
-        <button
-          className="md:hidden text-gray-800"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X size={26}/> : <Menu size={26}/>}
+        {/* Mobile Toggle */}
+        <button onClick={() => setOpen(!open)} className="md:hidden">
+          {open ? <X size={26} /> : <Menu size={26} />}
         </button>
-
       </div>
 
       {/* Mobile Menu */}
@@ -87,29 +72,21 @@ export default function Header({ setCurrentPage, currentPage }: HeaderProps) {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden bg-white border-t px-6 py-6 flex flex-col gap-6 text-gray-700 font-medium"
+            className="md:hidden bg-white border-t px-6 py-6 flex flex-col gap-6"
           >
             {navItems.map((item) => (
-              <button
-                key={item.page}
-                onClick={() => {
-                  setCurrentPage(item.page as any)
-                  setOpen(false)
-                }}
-                className={`text-left transition ${
-                  currentPage === item.page
-                    ? "text-black font-semibold"
-                    : "text-gray-600 hover:text-black"
-                }`}
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={() => setOpen(false)}
+                className="text-gray-700 hover:text-black"
               >
                 {item.name}
-              </button>
+              </Link>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
-
     </header>
   )
 }

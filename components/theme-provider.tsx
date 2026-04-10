@@ -9,8 +9,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       attribute="class"
       defaultTheme="system"
       enableSystem
-      enableColorScheme={false}     // ✅ prevents script conflict
-      disableTransitionOnChange     // ✅ prevents flicker + error
+      disableTransitionOnChange
     >
       {children}
     </NextThemesProvider>
