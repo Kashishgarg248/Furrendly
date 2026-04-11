@@ -90,33 +90,44 @@ export default function Footer() {
             </div>
 
             {/* Legal */}
-            <div>
-              <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wide">
-                Legal
-              </h3>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <Link href="/privacy" className="text-gray-400 hover:text-white transition hover:underline">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terms" className="text-gray-400 hover:text-white font-semibold transition hover:underline">
-                    Terms of Service
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/safety" className="text-gray-400 hover:text-white transition hover:underline">
-                    Safety Guidelines
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/faq" className="text-gray-400 hover:text-white transition">
-                    FAQ
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {/* Legal */}
+<div>
+  <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wide">
+    Legal
+  </h3>
+  <ul className="space-y-3 text-sm">
+    <li>
+      <Link href="/privacy" className="text-gray-400 hover:text-white transition hover:underline">
+        Privacy Policy
+      </Link>
+    </li>
+    <li>
+      <Link href="/terms" className="text-gray-400 hover:text-white transition hover:underline">
+        Terms of Service
+      </Link>
+    </li>
+    <li>
+      <Link href="/data-safety" className="text-gray-400 hover:text-white transition hover:underline">
+        Data Safety
+      </Link>
+    </li>
+    <li>
+      <Link href="/account-deletion" className="text-gray-400 hover:text-white transition hover:underline">
+        Account Deletion Policy
+      </Link>
+    </li>
+    <li>
+      <Link href="/safety" className="text-gray-400 hover:text-white transition hover:underline">
+        Safety Guidelines
+      </Link>
+    </li>
+    <li>
+      <Link href="/faq" className="text-gray-400 hover:text-white transition">
+        FAQ
+      </Link>
+    </li>
+  </ul>
+</div>
 
           </div>
         </motion.div>
